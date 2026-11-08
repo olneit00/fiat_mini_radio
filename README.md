@@ -1,6 +1,6 @@
-# Mini Retro Radio
+# PipER32 – Mini-Radio für den Fiat 500
 
-Ein kompaktes, selbst gebautes Internetradio im Stil klassischer Autoradios der 1960er-Jahre. Das Projekt verbindet ein individuell konstruiertes, 3D-druckbares Gehäuse mit moderner Elektronik und einer bewusst zurückhaltenden Retro-Optik.
+**PipER32** ist ein kompaktes, selbst gebautes Internetradio im Stil klassischer Autoradios der 1960er-Jahre. Das Projekt verbindet ein individuell konstruiertes, 3D-druckbares Gehäuse mit moderner Elektronik und einer bewusst zurückhaltenden Retro-Optik.
 
 Das Gerät ist für den Einbau in einen kleinen vorhandenen Aschenbecher-Schacht eines historischen Fiat 500 gedacht. Die Konstruktion kann auch als Ausgangspunkt für andere kompakte Einbauten dienen.
 
