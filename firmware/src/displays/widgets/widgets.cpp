@@ -889,13 +889,6 @@ static inline uint16_t fswRGB(uint8_t r, uint8_t g, uint8_t b){
   return ((r & 0xF8) << 8) | ((g & 0xFC) << 3) | (b >> 3);
 }
 
-static void fswFrame(uint16_t x, uint16_t y, uint16_t w, uint16_t h, uint16_t color, uint8_t t){
-  dsp.fillRect(x, y, w, t, color);
-  dsp.fillRect(x, y + h - t, w, t, color);
-  dsp.fillRect(x, y, t, h, color);
-  dsp.fillRect(x + w - t, y, t, h, color);
-}
-
 void FrequencyScaleWidget::init(){
   _width = _backMove.width = 0;
   _active = _moved = _locked = false;
@@ -974,7 +967,6 @@ void FrequencyScaleWidget::_draw(){
   uint16_t red = inv ? fswRGB(76, 237, 228) : fswRGB(179, 18, 27);
 
   _drawBackground(inv);
-  fswFrame(4, 4, w - 8, h - 8, ink, 3);
   _drawScale(ink);
   _drawPointer(red);
 }

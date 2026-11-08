@@ -38,7 +38,7 @@ upstream repository to see the exact changes.
 - **`src/displays/widgets/widgets.cpp`**: implementation of
   `FrequencyScaleWidget`. Static drawing, no animation, no link to the station
   list. Scale 88-108 MHz, labels every 4 MHz, ticks of three lengths, red 3 px
-  pointer at 96 MHz, 3 px frame, simulated lamp gradient. Inverted display setting
+  pointer at 96 MHz, simulated lamp gradient (no frame). Inverted display setting
   is pre-compensated for the hardware inversion of the ST7789 driver.
 
 ### 2.2 Audio and SD card
