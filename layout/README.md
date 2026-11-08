@@ -52,3 +52,7 @@ Keine Verstärkerschaltung. Audioausgänge bleiben zunächst am vorhandenen DAC-
 - Lage der Kabel-Lötaugen im CAD-Gehäuse und Antennenfreiraum des ESP32.
 
 **Nächster Schritt:** Maßzeichnung/Footprints der beiden Steckmodule festlegen, anschließend passive KiCad-Schaltplan- und PCB-Dateien erzeugen.
+
+## Drehencoder verdrahten
+
+Siehe [Encoder-Verdrahtung](encoder_verdrahtung.md) für die vieradrige Verbindung, lokale GND-Brücke zwischen Encoder-C und Taster sowie Empfehlungen für steckbare Anschlüsse und Zugentlastung.
