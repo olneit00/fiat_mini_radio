@@ -1,4 +1,4 @@
-# PCB-Layout – DRAFT v0.4: rein passive Trägerplatine
+# PipER32 – PCB-Layout – DRAFT v0.4: rein passive Trägerplatine
 
 **Ziel:** So einfach wie möglich. Die Platine enthält **keine aktiven Komponenten** und keine eigenen Widerstände, Spannungsregler, USB-Buchsen oder Taster. **Noch nicht fertigungsreif.**
 
