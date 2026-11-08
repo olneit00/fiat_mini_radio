@@ -1,4 +1,4 @@
-# PCB-Layout-Leitfaden (Entwurf)
+# PipER32 – PCB-Layout-Leitfaden (Entwurf)
 
 ## Quelle und Status
 Repository `olneit00/fiat_mini_radio`, Branch `main`, Firmware `firmware/myoptions.h` und `firmware/platformio.ini`, geprüft 2026-11-08. Keine Fertigungsfreigabe. Die CSV-Dateien sind **Planungs- und Importhilfen**, keine elektrisch vollständige KiCad-Schaltplandatei.
