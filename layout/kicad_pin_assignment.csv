@@ -1,12 +1,14 @@
 Reference,Value,Footprint,Datasheet,Status
-U1,ESP32-S3-WROOM-1-N16R8,Module:Espressif_ESP32:ESP32-S3-WROOM-1,,Proposed
-U2,ST7789 240x240 display module,TBD,,Confirmed firmware controller
-U3,PCM5100 DAC module,TBD,,Prior prototype; verify actual module
-U4,Audio amplifier module,TBD,,Verify model
+U1,ESP32-S3-WROOM-1 N16R8 compatible,TBD,https://www.espressif.com/sites/default/files/documentation/esp32-s3-wroom-1_wroom-1u_datasheet_en.pdf,Verify module SKU
+J1,USB-C USB2.0 receptacle,TBD,,Choose footprint
+R1,5.1k CC1,Resistor_SMD:R_0603_1608Metric,,Proposed
+R2,5.1k CC2,Resistor_SMD:R_0603_1608Metric,,Proposed
+U5,3.3V regulator,TBD,,Choose type and stability capacitors
+D1,USB ESD protector,TBD,,Choose type
+SW3,RESET,TBD,,Proposed
+SW4,BOOT,TBD,,Proposed
+U2,ST7789 display module,TBD,,Verify module
+U3,PCM5100 DAC module,TBD,https://www.ti.com/product/PCM5100A,Verify module
+J2,Stereo line out,TBD,,Choose connector
 SW1,Rotary encoder with pushbutton,TBD,,Verify footprint
 SW2,Rotary encoder with pushbutton,TBD,,Verify footprint
-U5,3.3V regulator,TBD,,Proposed; choose after current budget
-J1,USB connector,TBD,,Proposed; not confirmed
-C1,100nF,Capacitor_SMD:C_0603_1608Metric,,Proposed local decoupling
-C2,100nF,Capacitor_SMD:C_0603_1608Metric,,Proposed local decoupling
-C3,10uF,Capacitor_SMD:C_0805_2012Metric,,Proposed bulk; voltage rating TBD
