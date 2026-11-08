@@ -19,6 +19,7 @@
   GPIO17/16/15 -----------------------> ST7789 CS/DC/RST
   SPI2 SCLK/MOSI (noch offen) --------> ST7789 CLK/DIN
   GPIO5/4/6 -------------------------> PCM5100 DIN/BCK/LRCK
+  GND --------------------------------> PCM5100 SCK (Pin 6)
   GPIO47/21/7 -----------------------> Encoder 1 A/B/Taster
   GPIO39/40/41 ----------------------> Encoder 2 A/B/Taster
   PCM5100 LOUT/ROUT/GND -------------> Line-Out-Anschluss
@@ -52,8 +53,9 @@
 | DIN | 5 | Firmware bestätigt |
 | BCK | 4 | Firmware bestätigt |
 | LRCK/LCK | 6 | Firmware bestätigt |
+| SCK (Masterclock) | GND | Nutzer bestätigt; BCK bleibt GPIO4 |
 | LOUT/ROUT/GND | Line-Out-Stecker | Vorgesehen |
-| Versorgung, MCLK/SCK, XSMT, FMT, FLT, DEMP | **offen** | Hängt von tatsächlichem PCM5100-Modul ab |
+| Versorgung, XSMT, FMT, FLT, DEMP | **offen** | Hängt von tatsächlichem PCM5100-Modul ab |
 
 Der DAC liefert **Line-Level**; keine Lautsprecher direkt anschließen. Ein Verstärker ist in dieser Revision nicht enthalten.
 
