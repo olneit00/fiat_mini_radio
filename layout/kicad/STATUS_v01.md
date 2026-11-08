@@ -31,3 +31,10 @@
 - Eine **GND-Kupferzone auf B.Cu** wurde angelegt (0,5 mm Abstand zum Platinenrand, 0,3 mm Clearance). Die Zone ist in der PCB-Datei definiert, aber **noch nicht gefüllt** (kein KiCad-DRC/Zone-Fill ausgeführt).
 - Signal-Leiterbahnen sind weiterhin **nicht geroutet**. Die Platine darf nicht gefertigt werden.
 - Die Anschlüsse aus der anderen Agentenprüfung (GPIO18 SPI-SCLK, GPIO14 SPI-MOSI; 3V3 für Display/DAC/BLK) sind als Netze zugewiesen, aber die reale HW-678-Pinbelegung und mechanische Passung müssen unabhängig geprüft werden.
+
+## Routing-Versuch (08.11.2026)
+- **434 Segmente** mit 0,25 mm Breite auf B.Cu erzeugt und in die PCB-Datei geschrieben (Commit bd8fe4d).
+- Die Verbindungsketten von 3V3, GPIO14, GPIO15, GPIO18, GPIO39, GPIO4, GPIO5, GPIO6 und GPIO7 wurden algorithmisch geführt. **Nicht DRC-geprüft; diese Verbindungen sind NICHT als elektrisch korrekt bestätigt.**
+- Nicht geroutet: **GPIO16, GPIO17, GPIO21, GPIO40, GPIO41, GPIO47**. Diese sechs Luftlinien bleiben offen.
+- Der GND-Zonenfüllstand ist weiterhin nicht berechnet. Einlagige Signalführung auf B.Cu ist nur ein Zwischenschritt; ggf. F.Cu + Vias nötig.
+- **Keine Gerber oder Produktionsfreigabe** bis KiCad-DRC, Netz-Konnektivitätsprüfung und mechanische Passprobe erfolgreich abgeschlossen sind.
