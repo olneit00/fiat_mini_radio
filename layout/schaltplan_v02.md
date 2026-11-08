@@ -1,76 +1,63 @@
-# Schaltplanentwurf v0.2 – USB-C, ohne Verstärker
+# Schaltplanentwurf – Trägerplatine v0.3, ohne Verstärker
 
-**Status:** Architektur und verbindliche Netze für einen KiCad-Schaltplan. **Dies ist noch keine native `.kicad_sch`-Datei und nicht fertigungsreif.**
+**Status: Entwurf, keine native KiCad-Schaltplandatei, nicht fertigungsreif.**
 
-## Blockschaltbild
+## Architektur
 
 ```text
- USB-C (USB 2.0, 5 V)
-  | VBUS ---- Schutz/Filter ---- +5V --------------------> ggf. DAC-Modul
-  |                             |
-  |                             +-- 3V3-Regler --> ESP32-S3-WROOM-1
-  |                                              +--> Display (wenn 3V3-Modul)
-  |                                              +--> DAC (wenn 3V3-Modul)
-  | GND -----------------------------------------------> gemeinsame Masse
-  | D+/D- ----------------------------> ESP32-S3 native USB (GPIO20/GPIO19)
-  | CC1 -- 5k1 --> GND; CC2 -- 5k1 --> GND
-
- ESP32-S3
-  GPIO17/16/15 -----------------------> ST7789 CS/DC/RST
-  SPI2 SCLK/MOSI (noch offen) --------> ST7789 CLK/DIN
-  GPIO5/4/6 -------------------------> PCM5100 DIN/BCK/LRCK
-  GND --------------------------------> PCM5100 SCK (Pin 6)
-  GPIO47/21/7 -----------------------> Encoder 1 A/B/Taster
-  GPIO39/40/41 ----------------------> Encoder 2 A/B/Taster
-  PCM5100 LOUT/ROUT/GND -------------> Line-Out-Anschluss
+    USB-C-Kabel
+         |
+         v
+  +-------------------------+
+  | ESP32-S3-DevKitC-1      |
+  | integrierte USB-C-Buchse|
+  | integrierte 3V3-Regelung|
+  | BOOT / RESET vorhanden  |
+  +-------------------------+
+      |   |   |    |
+      |   |   |    +-- GPIOs -> Encoder 1 + Encoder 2
+      |   |   +------- SPI -> ST7789-Display
+      |   +----------- I2S -> PCM5100-Steckmodul -> Line-Out
+      +--------------- GND, 3V3 und ggf. 5V -> Peripherie
 ```
 
-## USB-C und Stromversorgung
-- USB-C **USB-2.0-Device/Sink**: CC1 und CC2 jeweils mit eigenem 5,1-kΩ-Pulldown nach GND; A6/B6 (D+) zusammenführen, A7/B7 (D−) zusammenführen. USB-ESD-Schutz nahe Buchse vorsehen.
-- ESP32-S3 **native USB**: GPIO20 = USB D+, GPIO19 = USB D− (anhand des finalen Moduldatenblatts und Layouts nochmals prüfen).
-- 3,3-V-LDO mit ausreichender Reserve für WLAN-Spitzenlast, Display und DAC auswählen. Ein konkreter Reglertyp ist noch **nicht** freigegeben.
-- Kondensatoren, Reglerstabilität, Eingangsschutz und ggf. USB-Strombudget nach Datenblatt auslegen. Keine direkte Verbindung zur 12-V-Fahrzeugversorgung.
-- ESP32 EN: Pull-up nach 3V3, RC-Power-on-Reset gemäß Espressif-Referenzdesign und RESET-Taster nach GND.
-- GPIO0: Boot-Pull-up und BOOT-Taster nach GND gemäß Espressif-Referenzdesign. GPIO0 während Normalbetrieb nicht durch weitere Hardware festhalten.
-- Modulstrapping, interne PSRAM-/Flashbelegung und unbenutzte Pins anhand der **exakten** S3-WROOM-Variante prüfen.
+**Wichtig:** Auf der Trägerplatine gibt es **keine eigene USB-C-Buchse, keinen USB-Controller, keine USB-Datenleitung, keinen eigenen Spannungsregler und keine BOOT-/RESET-Taster**. Das vorhandene ESP32-S3-DevKitC-1 wird in zwei passende Buchsenleisten gesteckt. USB-C bleibt direkt am DevKit; keine Gehäuse-Durchführung geplant.
 
-## Display (ST7789, SPI)
+## Display (ST7789)
 | Signal | ESP32 GPIO | Status |
-| --- | --- | --- |
-| CS | 17 | Firmware bestätigt |
-| DC | 16 | Firmware bestätigt |
-| RST | 15 | Firmware bestätigt |
-| SCLK | **offen** | `SPI2(HSPI)`-Pinbelegung im tatsächlich verwendeten Core prüfen |
-| MOSI | **offen** | dito |
-| BLK | **offen** | Versorgung/Strombedarf des konkreten Moduls prüfen |
-| VCC/GND | **offen** | Modulversion prüfen |
+|---|---|---|
+| CS | 17 | Firmware |
+| DC | 16 | Firmware |
+| RST | 15 | Firmware |
+| SCLK | offen | SPI2(HSPI)-Core-Belegung prüfen |
+| MOSI | offen | SPI2(HSPI)-Core-Belegung prüfen |
+| BLK / VCC / GND | offen | Tatsächliches Displaymodul prüfen |
 
-**Achtung:** Die alte Prototyp-Tabelle nennt CS=15 und RST=17; die aktuelle Firmware vertauscht diese Signale. Vor Layout beide Stände abgleichen.
+**Achtung:** Historische Prototyp-Verdrahtung vertauscht CS und RST gegenüber aktuellem `myoptions.h`.
 
-## I²S-DAC (PCM5100)
-| Signal | ESP32 GPIO | Status |
-| --- | --- | --- |
-| DIN | 5 | Firmware bestätigt |
-| BCK | 4 | Firmware bestätigt |
-| LRCK/LCK | 6 | Firmware bestätigt |
-| SCK (Masterclock) | GND | Nutzer bestätigt; BCK bleibt GPIO4 |
-| LOUT/ROUT/GND | Line-Out-Stecker | Vorgesehen |
-| Versorgung, XSMT, FMT, FLT, DEMP | **offen** | Hängt von tatsächlichem PCM5100-Modul ab |
+## PCM5100 (aufgelötete 6-polige Buchsenleiste)
+| Modul-Pin | Beschriftung | Verbindung |
+|---|---|---|
+| 1 | VIN | 3V3 oder 5V **nach Prüfung des Breakouts** |
+| 2 | GND | GND |
+| 3 | LCK | GPIO6 |
+| 4 | DIN | GPIO5 |
+| 5 | BCK | GPIO4 |
+| 6 | SCK | **GND** |
 
-Der DAC liefert **Line-Level**; keine Lautsprecher direkt anschließen. Ein Verstärker ist in dieser Revision nicht enthalten.
+Analogausgänge L/R/GND separat als Line-Out herausführen; Position/Steckverbinder des Moduls noch prüfen. **Kein Audioverstärker.**
 
-## Drehencoder
-- Encoder 1: A=GPIO47, B=GPIO21, SW=GPIO7
-- Encoder 2: A=GPIO39, B=GPIO40, SW=GPIO41
-- Common-Pins an GND, Firmware-Pull-ups auf ihre tatsächliche Konfiguration prüfen.
-- Mechanische Bauform, Pinreihenfolge und Footprints vor Schaltplanfinalisierung festlegen.
+## Encoder
+- Encoder 1: A=GPIO47, B=GPIO21, Taster=GPIO7, Common=GND
+- Encoder 2: A=GPIO39, B=GPIO40, Taster=GPIO41, Common=GND
+- Pull-ups in Firmware prüfen; tatsächliche Encoder-Footprints und Orientierung festlegen.
 
-## PCB-Aufbau
-- ESP32-Antennenfreiraum nach Modul-Datenblatt; Metall-Chromrahmen berücksichtigen.
-- USB-C-Buchse an zugänglicher Gehäusekante; USB-Datenpaar kurz und zusammenhängende Referenzmasse.
-- Audio-Analogsignale getrennt von USB/SPI und Schaltregler halten.
-- Mechanik zuerst: Gehäuse, Schraubdome, Encoderachsen, Displayöffnung, USB-Ausschnitt.
-- Erst nach ERC/DRC und Abgleich mit realen Modulen Gerber erzeugen.
+## Versorgung und Mechanik
+- Nur die auf dem DevKit verfügbaren **3V3/GND** und ggf. **5V** zur Peripherie verteilen. Belastbarkeit des DevKit-Reglers und die Modulspannungen vor Verbindung prüfen.
+- Keine direkte Verbindung mit 12 V.
+- Exaktes DevKit-Header-Raster und Pinpositionen messen/mit Datenblatt abgleichen; USB-C-Stecker muss im eingebauten Zustand zugänglich sein, ohne zusätzliche Gehäusebuchse.
+- WLAN-Antennenbereich des DevKits von Kupfer und Metall nach Herstellerangaben freihalten.
+- Vor PCB-Freigabe: ERC/DRC, Versorgung, Steckrichtung, CAD-Abmessungen.
 
-## Nächste Entscheidung
-Das genaue ST7789-Displaymodul und das PCM5100-DAC-Modul (Fotos/Links oder Pinbeschriftungen) bestimmen die Stecker und Versorgung. Danach native KiCad-Symbole/Footprints und einen überprüfbaren Schaltplan erstellen.
+## Nächster Schritt
+Pin- und Footprintabgleich des **konkreten ESP32-S3-DevKitC-1**, ST7789 und PCM5100, dann native KiCad-Schaltplandatei und Trägerplatinenlayout.
