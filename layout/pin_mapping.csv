@@ -1,0 +1,16 @@
+ESP32_GPIO,Funktion,Komponente,Pin_dort,Spannung,Bemerkung
+GPIO17,TFT_CS,U2,CS,3.3V logic,confirmed firmware/myoptions.h
+GPIO16,TFT_DC,U2,DC,3.3V logic,confirmed
+GPIO15,TFT_RST,U2,RES,3.3V logic,confirmed
+TBD,SPI SCLK,U2,SCL/CLK,3.3V logic,DSP_HSPI true; bus defaults require verification
+TBD,SPI MOSI,U2,SDA/DIN,3.3V logic,DSP_HSPI true; bus defaults require verification
+TBD,Display backlight,U2,BLK,TBD,wired power/driver must be checked
+GPIO5,I2S_DOUT,U3,DIN,3.3V logic,confirmed
+GPIO4,I2S_BCLK,U3,BCK,3.3V logic,confirmed
+GPIO6,I2S_LRC,U3,LCK/LRCK,3.3V logic,confirmed
+GPIO47,Encoder 1 A,SW1,A/CLK,3.3V logic,confirmed ENC_BTNL
+GPIO21,Encoder 1 B,SW1,B/DT,3.3V logic,confirmed ENC_BTNR
+GPIO7,Encoder 1 SW,SW1,SW,3.3V logic,confirmed ENC_BTNB
+GPIO39,Encoder 2 A,SW2,A/CLK,3.3V logic,confirmed ENC2_BTNL
+GPIO40,Encoder 2 B,SW2,B/DT,3.3V logic,confirmed ENC2_BTNR
+GPIO41,Encoder 2 SW,SW2,SW,3.3V logic,confirmed ENC2_BTNB
