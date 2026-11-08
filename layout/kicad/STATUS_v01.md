@@ -50,3 +50,10 @@
 - Vier **nicht metallisierte 3,2-mm-Bohrungen** bei (4,4), (66,4), (4,61), (66,61) mm ergänzt (Commit 50dacfd). Mechanische Bauteilfreiräume und Kupferabstände müssen noch per DRC bestätigt werden.
 - **GPIO40 und GPIO41** algorithmisch über F.Cu/B.Cu ergänzt (Commit eb799d9): 459 weitere 0,25-mm-Segmente und **1 Via (0,8/0,4 mm)**. GPIO40 ohne Via; GPIO41 mit einem Via. Alle ursprünglich offenen GPIO-Verbindungen haben damit einen Entwurfs-Routingpfad.
 - **WICHTIG:** Dies ist kein bestandener KiCad-DRC. Die automatischen Routen sind noch nicht auf tatsächliche Kupferkurzschlüsse, Abstände, Leiterbahn-Pad-Anschlüsse oder unverbundene Netze geprüft; Massezone nicht gefüllt. Keine Fertigungsfreigabe.
+
+## Statische Plausibilitätsprüfung (08.11.2026)
+- PCB-Text enthält **1206 Leiterbahnsegmente**, davon 736 auf F.Cu und 470 auf B.Cu, sowie **1 Via**.
+- **66 elektrische Kontaktpads** vorhanden (44 ESP32, 6 DAC, 8 Display, 8 Encoder); drei davon absichtlich ohne Netz: ESP32-RST, TX, RX. Hinzu kommen vier nichtmetallisierte Montagebohrungen.
+- Abstandstest der vorhandenen Leiterbahnen zu den vier M3-Bohrungen: keine Verletzung des groben Grenzwerts 2,025 mm vom Bohrmittelpunkt gefunden; Kupferzonenfüllung und Bauteil-Courtyards weiterhin nicht geprüft.
+- **KRITISCHER BEFUND:** Eine statische geometrische Kontrolle meldet auf F.Cu einen Abstand von nur **0,25 mm** zwischen einer GPIO21-Leiterbahn (Netz 18, Segment x=36,75 mm) und GPIO40 (Netz 26, bei y=23,5 mm). Bei 0,25-mm-Leiterbahnen bleibt nur 0,00 mm Kupferabstand zwischen diesen Segmenten. Der Entwurf ist **nicht fertigungsreif**. Vor Gerberexport muss die Route korrigiert und mit KiCad DRC verifiziert werden.
+- Keine DRC- oder ERC-Prüfung mit KiCad möglich in der aktuellen Laufzeitumgebung. Eine formale Prüfung darf nicht als bestanden dargestellt werden.
