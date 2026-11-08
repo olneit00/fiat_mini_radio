@@ -2,7 +2,7 @@
 
 Ein kompaktes, selbst gebautes Internetradio im Stil klassischer Autoradios der 1960er-Jahre. Das Projekt verbindet ein individuell konstruiertes, 3D-druckbares Gehäuse mit moderner Elektronik und einer bewusst zurückhaltenden Retro-Optik.
 
-Das Gerät ist für den Einbau in einen kleinen vorhandenen Armaturenbrett-Schacht eines historischen Fahrzeugs gedacht. Die Konstruktion kann auch als Ausgangspunkt für andere kompakte Einbauten dienen.
+Das Gerät ist für den Einbau in einen kleinen vorhandenen Aschenbecher-Schacht eines historischen Fiat 500 gedacht. Die Konstruktion kann auch als Ausgangspunkt für andere kompakte Einbauten dienen.
 
 > **Projektstatus:** Die mechanischen Modelle sind bereits im Repository enthalten. Die Firmware und die vollständige elektrische Dokumentation werden noch ergänzt. Die unten beschriebenen Funktionen und Anschlüsse beruhen teilweise auf dem bisherigen Prototyp und müssen nach Veröffentlichung des Quellcodes gegen die tatsächliche Konfiguration abgeglichen werden.
 
