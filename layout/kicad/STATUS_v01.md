@@ -1,0 +1,20 @@
+# KiCad-Trägerplatine – Prüfstatus v0.1
+
+[PCB-Platzierungsentwurf](fiat_mini_radio_carrier_v01.kicad_pcb) (65 × 65 mm) enthält 2 × 22 ESP32-Sockelkontakte, 1 × 6 PCM5102A-Sockelkontakte sowie **16 beschriftete Lötaugen** (Encoder 1: 4; Encoder 2: 4; ST7789: 8).
+
+**ACHTUNG: NICHT FERTIGEN.** Die PCB-Datei ist eine **unverdrahtete Platzierungsskizze**. Die Pads sind noch keinem Netz zugewiesen. Die Pin-Nummerierung des ESP32-Footprints ist nur eine Platzhalterzählung, **keine** bestätigte Zuordnung zu GPIO-Labels. Eine DRC-/ERC-Prüfung wurde nicht durchgeführt.
+
+## Bekannte Prüfungen / Risiken
+1. HW-678 V0.0.0: 22 Pins pro Reihe, gemessener Reihenabstand 24,5 mm, Pinpitch 2,54 mm vorläufig. **1:1-Passprobe zwingend**.
+2. Die Platzierung von Display-Lötaugen und DAC benötigt eine Kollisionsprüfung mit den **realen Modulabmessungen**, Stiftleisten und Kabeln; 65 × 65 mm ist eine Zielgröße, keine geprüfte Passung.
+3. Der DAC-Sockel hat die Reihenfolge VIN, GND, LCK, DIN, BCK, SCK; SCK=GND, BCK=GPIO4, DIN=GPIO5, LCK=GPIO6. **VIN-Spannung noch zu prüfen**.
+4. Encoder 1: GPIO47,21,7; Encoder 2: GPIO39,40,41. Common=GND.
+5. ST7789: CS=GPIO17, DC=GPIO16, RST=GPIO15; SPI-SCLK und SPI-MOSI aus der tatsächlich verwendeten SPI2/HSPI-Konfiguration ermitteln. VCC/BLK nach Modul prüfen.
+6. Die PCM5102A-Analogausgänge werden über die **bereits vorhandene Klinkenbuchse** verwendet; keine zusätzlichen Audio-Lötpunkte vorgesehen.
+7. Keine aktiven Komponenten, kein Verstärker, keine zusätzliche USB-C-Buchse oder 12-V-Versorgung.
+
+## Weiteres Vorgehen
+- Sockel-Pinzuordnung anhand des Nutzerfotos und der Board-Beschriftungen eindeutig festlegen.
+- Modul- und Lötaugenkollisionen beseitigen.
+- KiCad-Netze zuweisen, routen, 1:1-Ansicht und DRC prüfen.
+- Erst danach Fertigungsdaten erzeugen.
