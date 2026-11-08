@@ -2,6 +2,13 @@
 
 **Ziel:** So einfach wie möglich. Die Platine enthält **keine aktiven Komponenten** und keine eigenen Widerstände, Spannungsregler, USB-Buchsen oder Taster. **Noch nicht fertigungsreif.**
 
+## Mechanische Zielgröße
+- **PCB-Zielmaß: 70 × 70 mm** (Nutzerwunsch, noch nicht auf Passform verifiziert).
+- ESP32-Header: 2 × 22 Kontakte, 2,54-mm-Raster angenommen, Reihenabstand 24,5 mm Mitte–Mitte vom Nutzer gemessen.
+- ESP32-Modul mit vorhandenen angelöteten Stiftleisten, daher Buchsenleisten auf Trägerplatine.
+- Zwei USB-C-Buchsen befinden sich auf dem vorhandenen ESP32-Board; keine Buchse auf der Trägerplatine.
+- DAC-Modulabmessungen, Position und Gehäusefreiheit noch offen.
+
 ## Bestückung
 1. Zwei **22-polige Buchsenleisten (2 × 22 Kontakte)** als Sockel für das **vorhandene ESP32-S3-DevKitC-1 N16R8** (USB-C sitzt bereits auf dem DevKit).
 2. Eine **6-polige Buchsenleiste** für das vorhandene **PCM5100-DAC-Modul** (Pinfolge VIN, GND, LCK, DIN, BCK, SCK).
