@@ -1,0 +1,24 @@
+Ref,Value,Footprint,Gehäuse,Hersteller-PN,Pin_Name,Netz,Verbunden_zu,Spannung,Status
+U2,ST7789 240x240 display module,TBD,module/connector,TBD,CS,TFT_CS,U1:GPIO17,3.3V logic,confirmed firmware/myoptions.h
+U2,ST7789 240x240 display module,TBD,module/connector,TBD,DC,TFT_DC,U1:GPIO16,3.3V logic,confirmed
+U2,ST7789 240x240 display module,TBD,module/connector,TBD,RES,TFT_RST,U1:GPIO15,3.3V logic,confirmed
+U2,ST7789 240x240 display module,TBD,module/connector,TBD,SCL/CLK,SPI SCLK,U1:TBD,3.3V logic,DSP_HSPI true; bus defaults require verification
+U2,ST7789 240x240 display module,TBD,module/connector,TBD,SDA/DIN,SPI MOSI,U1:TBD,3.3V logic,DSP_HSPI true; bus defaults require verification
+U2,ST7789 240x240 display module,TBD,module/connector,TBD,BLK,Display backlight,U1:TBD,TBD,wired power/driver must be checked
+U3,PCM5100 DAC module,TBD,module/connector,TBD,DIN,I2S_DOUT,U1:GPIO5,3.3V logic,confirmed
+U3,PCM5100 DAC module,TBD,module/connector,TBD,BCK,I2S_BCLK,U1:GPIO4,3.3V logic,confirmed
+U3,PCM5100 DAC module,TBD,module/connector,TBD,LCK/LRCK,I2S_LRC,U1:GPIO6,3.3V logic,confirmed
+SW1,Rotary encoder with pushbutton,TBD,module/connector,TBD,A/CLK,Encoder 1 A,U1:GPIO47,3.3V logic,confirmed ENC_BTNL
+SW1,Rotary encoder with pushbutton,TBD,module/connector,TBD,B/DT,Encoder 1 B,U1:GPIO21,3.3V logic,confirmed ENC_BTNR
+SW1,Rotary encoder with pushbutton,TBD,module/connector,TBD,SW,Encoder 1 SW,U1:GPIO7,3.3V logic,confirmed ENC_BTNB
+SW2,Rotary encoder with pushbutton,TBD,module/connector,TBD,A/CLK,Encoder 2 A,U1:GPIO39,3.3V logic,confirmed ENC2_BTNL
+SW2,Rotary encoder with pushbutton,TBD,module/connector,TBD,B/DT,Encoder 2 B,U1:GPIO40,3.3V logic,confirmed ENC2_BTNR
+SW2,Rotary encoder with pushbutton,TBD,module/connector,TBD,SW,Encoder 2 SW,U1:GPIO41,3.3V logic,confirmed ENC2_BTNB
+U1,,TBD,,,3V3,3V3,U5:OUT,TBD,provisional physical connection
+U1,,TBD,,,GND,GND,GND,TBD,provisional physical connection
+U2,,TBD,,,VCC,3V3,U5:OUT (verify module),TBD,provisional physical connection
+U2,,TBD,,,GND,GND,GND,TBD,provisional physical connection
+U3,,TBD,,,VIN,POWER_DAC_TBD,TBD,TBD,provisional physical connection
+U3,,TBD,,,GND,GND,GND,TBD,provisional physical connection
+SW1,,TBD,,,COM,GND,GND,TBD,provisional physical connection
+SW2,,TBD,,,COM,GND,GND,TBD,provisional physical connection
