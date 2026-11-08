@@ -1,15 +1,9 @@
 Qty,Part,Value,Footprint,Supplier,Preis,Link,Status
-1,U1,ESP32-S3-WROOM-1 16MB/8MB PSRAM variant,TBD,TBD,TBD,,Variant must be verified
-1,J1,USB-C receptacle USB2.0,TBD,TBD,TBD,,Proposed
-2,R1-R2,5.1k CC pull-down,Resistor_SMD:R_0603_1608Metric,TBD,TBD,,Proposed
-1,U5,3.3V LDO with WLAN peak current headroom,TBD,TBD,TBD,,Choose from datasheet
-1,D1,USB ESD protection,TBD,TBD,TBD,,Proposed
-1,SW3,RESET pushbutton,TBD,TBD,TBD,,Proposed
-1,SW4,BOOT pushbutton,TBD,TBD,TBD,,Proposed
-1,U2,ST7789 240x240 display module,TBD,TBD,TBD,,Existing module verify
-1,U3,PCM5100 DAC module,TBD,TBD,TBD,,Existing module verify
-1,J2,Stereo line-out 3 pin,TBD,TBD,TBD,,Proposed
-1,SW1,Rotary encoder with pushbutton,TBD,TBD,TBD,,Existing hardware verify
-1,SW2,Rotary encoder with pushbutton,TBD,TBD,TBD,,Existing hardware verify
-2,C1-C2,100nF decoupling,Capacitor_SMD:C_0603_1608Metric,TBD,TBD,,Proposed
-1,C3,10uF bulk,Capacitor_SMD:C_0805_2012Metric,TBD,TBD,,Proposed
+1,U1,Existing ESP32-S3-DevKitC-1 N16R8,Plug-in development board,Existing,TBD,,Reuse; USB-C on DevKit
+2,J1-J2,DevKit female header strips,TBD,TBD,TBD,,Pitch row spacing pin count verify
+1,U2,Existing ST7789 240x240 display module,Connector TBD,Existing,TBD,,Verify display pinout and supply
+1,U3,Existing PCM5100 DAC breakout,Plug-in module,Existing,TBD,,SCK to GND
+1,J3,6 pin female socket for PCM5100,Connector_PinSocket_2.54mm:PinSocket_1x06_P2.54mm_Vertical,TBD,TBD,,Footprint only if 2.54mm pitch
+1,J4,Stereo line-out L R GND,TBD,TBD,TBD,,Connector depends on DAC output location
+1,SW1,Rotary encoder with pushbutton,TBD,TBD,TBD,,Verify footprint
+1,SW2,Rotary encoder with pushbutton,TBD,TBD,TBD,,Verify footprint
