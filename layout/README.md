@@ -1,25 +1,30 @@
-# PCB-Layout – DRAFT v0.2
+# PCB-Layout – DRAFT v0.3 (Trägerplatine)
 
-**Nicht zur Fertigung freigegeben.** Basis: `firmware/myoptions.h` und `firmware/platformio.ini`.
+**Nicht zur Fertigung freigegeben.** Grundlage: vorhandenes **ESP32-S3-DevKitC-1 N16R8** mit eigener USB-C-Buchse, `firmware/myoptions.h` und `firmware/platformio.ini`.
 
 ## Festgelegter Umfang
-- ESP32-S3-WROOM-1 (passende 16-MB-Flash-/8-MB-PSRAM-Variante noch anhand der Modulbestellnummer prüfen)
-- USB-C: 5-V-Versorgung und USB-Programmierung
-- 3,3-V-Regler für ESP32 und geeignete Peripherie
-- ST7789-SPI-Display (240×240)
-- zwei Drehencoder mit Tastern
-- PCM5100-I²S-DAC und analoger Stereo-Line-Out
-- **kein Audioverstärker** auf der Platine
-- **kein** Si4703-UKW-Empfänger, kein GC9A01
+- **Vorhandenes ESP32-S3-DevKitC-1** wird auf Buchsenleisten der Trägerplatine gesteckt; kein nacktes ESP32-WROOM-Modul auf der Trägerplatine.
+- **Stromversorgung und Firmware-Upload ausschließlich über die USB-C-Buchse am DevKit.** Keine USB-C-Buchse, kein 3,3-V-Regler, keine USB-Datenleitungen, keine zusätzlichen BOOT-/RESET-Taster auf der Trägerplatine.
+- ST7789-SPI-Display (240×240) über Steckanschluss.
+- Zwei Drehencoder mit Tastern.
+- Vorhandenes PCM5100-I²S-DAC-Modul über 6-polige Buchsenleiste; SCK an GND, BCK an GPIO4.
+- Stereo-Line-Out, **kein Audioverstärker**.
+- Keine 12-V-Fahrzeugversorgung auf der Trägerplatine.
 
 ## Dateien
-- [schaltplan_v02.md](schaltplan_v02.md): elektrischer Blockschaltplan, USB-C-/Reset-/Boot-Konzept und offene Gates
-- [pin_mapping.csv](pin_mapping.csv): aktuelle Firmware-GPIOs
-- [schaltplan_netzliste.csv](schaltplan_netzliste.csv): erste Signalzuordnung; **unvollständig**
-- [bom.csv](bom.csv): vorläufige Bauteile, ohne Verstärker
-- [kicad_pin_assignment.csv](kicad_pin_assignment.csv): KiCad-Vorbereitung, **keine** native Schaltplandatei
-- [pcb_layout_guide.md](pcb_layout_guide.md): Layoutregeln
-- [komponenten_details.md](komponenten_details.md): Referenzen und Prüfaufgaben
+- [schaltplan_v02.md](schaltplan_v02.md): aktuelle Trägerplatinen-Architektur (inhaltlich v0.3)
+- [pcm5100_module.md](pcm5100_module.md): DAC-Pinfolge und SCK an GND
+- [pin_mapping.csv](pin_mapping.csv): Firmware-GPIOs
+- [schaltplan_netzliste.csv](schaltplan_netzliste.csv): vorläufige Signalzuordnung; unvollständig
+- [bom.csv](bom.csv): Stückliste der Trägerplatine
+- [kicad_pin_assignment.csv](kicad_pin_assignment.csv): KiCad-Vorbereitung, noch keine native Schaltplandatei
+- [pcb_layout_guide.md](pcb_layout_guide.md) und [komponenten_details.md](komponenten_details.md): ältere Draft-Hinweise; bei Widerspruch gilt dieser Stand v0.3
 
-## Noch zu verifizieren
-SPI-SCLK/MOSI bei `SPI2(HSPI)` im tatsächlich gebauten Arduino-ESP32-Core; exakte Display- und PCM5100-Modulanschlüsse; 5-V-/3,3-V-Versorgung; USB-Datenleitungen; mechanische CAD-Maße. Ein fertiger KiCad-Schaltplan und ein geroutetes PCB stehen noch aus.
+## Vor Fertigung zu prüfen
+- Exaktes DevKitC-1-Board (Headerreihenabstand, Anzahl Pins, USB-Buchsen-Überstand, verfügbare 3V3-/5V-Pins, Einsteckrichtung)
+- Strombedarf und zulässige 3V3-/5V-Versorgung von Display und DAC; DevKit-Reglerkapazität
+- SPI-SCLK/MOSI aus tatsächlich verwendetem Arduino-Core und Pin-Konfiguration
+- PCM5100-Modul-Pitch, Ausgänge und Abmessungen
+- Mechanische Passung mit CAD-Gehäuse und WLAN-Antennenfreiraum
+
+Noch kein fertiger KiCad-Schaltplan oder geroutetes PCB.
