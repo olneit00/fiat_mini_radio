@@ -7,6 +7,7 @@ U2,ST7789 240x240 display module,TBD,module/connector,TBD,SDA/DIN,SPI MOSI,U1:TB
 U2,ST7789 240x240 display module,TBD,module/connector,TBD,BLK,Display backlight,U1:TBD,TBD,wired power/driver must be checked
 U3,PCM5100 DAC module,TBD,module/connector,TBD,DIN,I2S_DOUT,U1:GPIO5,3.3V logic,confirmed
 U3,PCM5100 DAC module,TBD,module/connector,TBD,BCK,I2S_BCLK,U1:GPIO4,3.3V logic,confirmed
+U3,PCM5100 DAC module,TBD,module/connector,TBD,SCK,GND,GND,0V,confirmed user wiring
 U3,PCM5100 DAC module,TBD,module/connector,TBD,LCK/LRCK,I2S_LRC,U1:GPIO6,3.3V logic,confirmed
 SW1,Rotary encoder with pushbutton,TBD,module/connector,TBD,A/CLK,Encoder 1 A,U1:GPIO47,3.3V logic,confirmed ENC_BTNL
 SW1,Rotary encoder with pushbutton,TBD,module/connector,TBD,B/DT,Encoder 1 B,U1:GPIO21,3.3V logic,confirmed ENC_BTNR
