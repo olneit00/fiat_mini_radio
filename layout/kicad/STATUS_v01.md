@@ -38,3 +38,9 @@
 - Nicht geroutet: **GPIO16, GPIO17, GPIO21, GPIO40, GPIO41, GPIO47**. Diese sechs Luftlinien bleiben offen.
 - Der GND-Zonenfüllstand ist weiterhin nicht berechnet. Einlagige Signalführung auf B.Cu ist nur ein Zwischenschritt; ggf. F.Cu + Vias nötig.
 - **Keine Gerber oder Produktionsfreigabe** bis KiCad-DRC, Netz-Konnektivitätsprüfung und mechanische Passprobe erfolgreich abgeschlossen sind.
+
+## F.Cu-Routingversuch
+- Vier zuvor offene Netze auf F.Cu mit 0,25-mm-Segmenten ergänzt: GPIO47, GPIO21, GPIO17, GPIO16 (Commit 9c2c126).
+- **GPIO40 und GPIO41 sind weiterhin unverbunden.** Die automatische Wegsuche fand bei der derzeitigen Reihenfolge und Belegung keine kollisionsfreie Route auf F.Cu.
+- GND-Kupferzone ist nicht gefüllt; vollständige DRC und reale Modul-Passprobe fehlen weiterhin. Außerdem sind die 0,25-mm-Leitungen noch nicht auf Abstände, Kurzschlüsse oder Fertigbarkeit geprüft.
+- Kein Produktionsstatus, keine Gerberfreigabe.
