@@ -38,7 +38,7 @@ Keine Verstärkerschaltung. Audioausgänge bleiben zunächst am vorhandenen DAC-
 - [kicad_pin_assignment.csv](kicad_pin_assignment.csv) – ältere KiCad-Vorbereitung
 
 ## Vor dem Layout zwingend abgleichen
-- Stiftleistenanzahl **22 je Seite (vom Nutzer bestätigt)**. Pitch voraussichtlich 2,54 mm; Reihenabstand und Orientierung des vorhandenen ESP32-S3-DevKits noch prüfen.
+- Stiftleistenanzahl **22 je Seite (vom Nutzer bestätigt)**. Pitch voraussichtlich 2,54 mm; **Reihenabstand Mitte–Mitte der Pinreihen vom Nutzer erneut gemessen: 24,5 mm** (abweichend von manchen Espressif-Referenzboards). Orientierung noch prüfen. Vor Fertigung mit einem Probeausdruck 1:1 oder der realen Platine verifizieren.
 - Stiftabstand, Maße und Einsteckrichtung des PCM5100-Moduls.
 - Stromversorgung und BLK-Beschaltung des Displaymoduls.
 - Die **tatsächlichen** SPI-SCLK/MOSI-Pins der laufenden Firmware.
