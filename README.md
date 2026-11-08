@@ -4,7 +4,7 @@ Ein kompaktes, selbst gebautes Internetradio im Stil klassischer Autoradios der 
 
 Das Gerät ist für den Einbau in einen kleinen vorhandenen Aschenbecher-Schacht eines historischen Fiat 500 gedacht. Die Konstruktion kann auch als Ausgangspunkt für andere kompakte Einbauten dienen.
 
-> **Projektstatus:** Die mechanischen Modelle sind bereits im Repository enthalten. Die Firmware und die vollständige elektrische Dokumentation werden noch ergänzt. Die unten beschriebenen Funktionen und Anschlüsse beruhen teilweise auf dem bisherigen Prototyp und müssen nach Veröffentlichung des Quellcodes gegen die tatsächliche Konfiguration abgeglichen werden.
+> **Projektstatus (November 2026):** CAD-Modelle, der yoRadio-basierte Firmware-Quellcode und erste Unterlagen zur Leiterplattenentwicklung sind im Repository vorhanden. Die Elektronik läuft bisher als verdrahteter ESP32-S3-DevKit-Prototyp. Die Dateien in `layout/` sind **DRAFT** und ausdrücklich noch nicht zur Fertigung freigegeben.
 
 ## Konzept
 
@@ -41,7 +41,7 @@ Die STL-Dateien lassen sich in einem geeigneten Slicer öffnen. Material, Schich
 
 Für den dauerhaften Einsatz im Fahrzeug sind insbesondere hohe Innenraumtemperaturen, UV-Belastung, mechanische Befestigung und ausreichender Abstand zu elektrischen Komponenten zu berücksichtigen. Ein geeigneter Werkstoff ist anhand seiner tatsächlichen Temperaturbeständigkeit auszuwählen.
 
-## Elektronik – bisheriger Prototyp
+## Elektronik – Prototyp und geplante eigene Leiterplatte
 
 Das bisherige Hardwarekonzept umfasst:
 
@@ -56,9 +56,9 @@ Das bisherige Hardwarekonzept umfasst:
 
 Diese Tabelle beschreibt den bisherigen Aufbau, **keine abschließend verifizierte Stückliste**.
 
-### Vorläufig bekannte Displayverdrahtung
+### Displayanschlüsse: frühere Prototypverdrahtung und aktuelle Firmware
 
-Die folgenden GPIOs stammen aus dem getesteten Prototyp. Sie sind vor Inbetriebnahme mit dem tatsächlich hochgeladenen Firmwarestand abzugleichen.
+Die folgende Tabelle dokumentiert die **früher notierte Prototypverdrahtung** und ist **nicht** mit der aktuellen Firmwarekonfiguration identisch. Für die PCB-Entwicklung gelten zunächst die aktiven Definitionen in `firmware/myoptions.h` (CS=17, DC=16, RST=15). Die SPI-Buspins müssen anhand des verwendeten ESP32-S3-Arduino-Cores noch verifiziert werden.
 
 | Display-Signal | GPIO / Anschluss |
 | --- | --- |
@@ -69,11 +69,11 @@ Die folgenden GPIOs stammen aus dem getesteten Prototyp. Sie sind vor Inbetriebn
 | RES / RST | GPIO 17 |
 | Hintergrundbeleuchtung | 3,3 V gemäß verwendeter Displayplatine |
 
-Die Spannungsversorgung, gemeinsame Masse sowie die Pinbelegung von Encodern, Audiowandler und Verstärker werden nach Prüfung des Quellcodes dokumentiert. **Keinesfalls Anschlüsse allein anhand dieser vorläufigen Tabelle verdrahten.**
+Die Firmware definiert außerdem I²S auf GPIO 5/4/6 und zwei Encoder auf GPIO 47/21/7 beziehungsweise 39/40/41. Die tatsächlichen Modulanschlüsse, SPI-Buspins, Versorgung und Footprints müssen noch geprüft werden. **Keinesfalls Anschlüsse allein anhand dieser vorläufigen Tabelle verdrahten.**
 
 ## Software und Bedienoberfläche
 
-Die Software basiert auf einer bestehenden Open-Source-Internetradio-Firmware, die für den kleinen Aufbau angepasst wird. Nach Veröffentlichung des Codes werden hier die genaue Herkunft, Version, Änderungen, Bauanleitung und die erforderlichen Lizenzhinweise dokumentiert.
+Der Quellcode liegt jetzt unter [firmware](firmware/). Er basiert auf [yoRadio](https://github.com/e2002/yoradio) und wird für das Mini-Radio angepasst. `firmware/platformio.ini` konfiguriert ein ESP32-S3-DevKitC-1 N16R8 mit 16 MB Flash und 8 MB PSRAM; `firmware/myoptions.h` enthält die projektspezifischen Pinzuordnungen. Der genaue Build- und Teststand sowie die Lizenzhinweise sind vor einem Nachbau zu prüfen.
 
 Vorgesehen beziehungsweise im bisherigen Prototyp erprobt:
 
@@ -94,9 +94,23 @@ Der Ruhezustand orientiert sich allgemein an beleuchteten Analogskalen der 1960e
 
 Die Skala ist als **statisches Designmotiv** vorgesehen. Der Zeiger bewegt sich nicht mit der Senderauswahl und es werden keine Internetsender auf analoge Frequenzen abgebildet. Damit bleibt die vorhandene Steuerung unabhängig vom dekorativen Erscheinungsbild.
 
+## PCB-Entwicklung (DRAFT)
+
+Unter [layout](layout/) liegen erste Arbeitsdateien zur eigenen Leiterplatte: vorläufige Netzliste, GPIO-Pinmapping, Stückliste, KiCad-Vorbereitungstabellen, Bauteilhinweise und ein Layout-Leitfaden. Diese Unterlagen sind **noch kein vollständiger KiCad-Schaltplan** und nicht zur Produktion freigegeben.
+
+Für die Platine ist ein ESP32-S3-WROOM-1-Modul statt des bisherigen DevBoards vorgesehen. Vor der Umsetzung sind insbesondere die tatsächlichen SPI-Leitungen, die Versorgung von Display/DAC/Verstärker, USB-Programmierung, Boot-/Reset-Schaltung, Antennenfreiraum und die mechanischen Einbaumaße zu klären.
+
+## Repository-Struktur
+
+| Verzeichnis | Inhalt | Stand |
+| --- | --- | --- |
+| [`CAD/`](CAD/) | STL-Modelle und SolidCraft-Projekt | Vorhanden |
+| [`firmware/`](firmware/) | yoRadio-basierter Quellcode, Konfiguration und Webressourcen | In Entwicklung |
+| [`layout/`](layout/) | Pinmapping, Netzliste, BOM und PCB-Planung | **DRAFT** |
+
 ## Nächste Schritte
 
-- [ ] Firmwarestand in das Repository aufnehmen
+- [x] Firmwarestand in das Repository aufnehmen
 - [ ] Abhängigkeiten und Open-Source-Lizenzen prüfen und dokumentieren
 - [ ] Finale Pinbelegung aller Baugruppen ergänzen
 - [ ] Stückliste und Stromversorgung dokumentieren
@@ -109,7 +123,7 @@ Die Skala ist als **statisches Designmotiv** vorgesehen. Der Zeiger bewegt sich 
 
 Dies ist ein privates Maker- und Dokumentationsprojekt, **kein offizielles oder von einem Fahrzeug- oder Gerätehersteller unterstütztes Produkt**. Die Gestaltung ist eigenständig und lediglich allgemein von der Ästhetik historischer Geräte inspiriert. Fremde Logos, Wortmarken, originale Skalenabbildungen und geschützte Grafiken sind nicht Bestandteil dieser Dokumentation.
 
-**Software-Lizenzen:** Fremde Software und Bibliotheken behalten ihre jeweiligen Lizenzbedingungen. Beim späteren Hinzufügen der Firmware müssen vorhandene Urheberrechtshinweise, Lizenztexte und gegebenenfalls Hinweise auf Änderungen korrekt übernommen werden. Für eigene Inhalte wurde noch keine Lizenz festgelegt; daraus ergibt sich keine pauschale Erlaubnis zur Weiterverwendung.
+**Software-Lizenzen:** Fremde Software und Bibliotheken behalten ihre jeweiligen Lizenzbedingungen. Bei Änderungen und Weitergabe der bereits enthaltenen Firmware müssen vorhandene Urheberrechtshinweise, Lizenztexte und gegebenenfalls Hinweise auf Änderungen korrekt übernommen werden. Für eigene Inhalte wurde noch keine Lizenz festgelegt; daraus ergibt sich keine pauschale Erlaubnis zur Weiterverwendung.
 
 **Zugangsdaten:** Keine Passwörter, WLAN-Zugangsdaten, API-Schlüssel oder Zugriffstoken einchecken. Lokale Konfigurationen vor dem Veröffentlichen kontrollieren. Bereits offengelegte Zugangsdaten unverzüglich widerrufen.
 
