@@ -1,14 +1,10 @@
 Reference,Value,Footprint,Datasheet,Status
-U1,ESP32-S3-WROOM-1 N16R8 compatible,TBD,https://www.espressif.com/sites/default/files/documentation/esp32-s3-wroom-1_wroom-1u_datasheet_en.pdf,Verify module SKU
-J1,USB-C USB2.0 receptacle,TBD,,Choose footprint
-R1,5.1k CC1,Resistor_SMD:R_0603_1608Metric,,Proposed
-R2,5.1k CC2,Resistor_SMD:R_0603_1608Metric,,Proposed
-U5,3.3V regulator,TBD,,Choose type and stability capacitors
-D1,USB ESD protector,TBD,,Choose type
-SW3,RESET,TBD,,Proposed
-SW4,BOOT,TBD,,Proposed
+U1,Existing ESP32-S3-DevKitC-1 N16R8,Plug-in module with dual female header rows,https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32s3/esp32-s3-devkitc-1/index.html,Verify exact header spacing and board revision
+J1,DevKit female header row A,TBD,,Verify pin count and position
+J2,DevKit female header row B,TBD,,Verify pin count and position
 U2,ST7789 display module,TBD,,Verify module
-U3,PCM5100 DAC module,TBD,https://www.ti.com/product/PCM5100A,Verify module
-J2,Stereo line out,TBD,,Choose connector
+U3,PCM5100 DAC module,TBD,https://www.ti.com/product/PCM5100A,Existing module
+J3,PCM5100 6-pin socket,Connector_PinSocket_2.54mm:PinSocket_1x06_P2.54mm_Vertical,,Verify 2.54mm pitch and orientation
+J4,Stereo line out,TBD,,Verify output connector
 SW1,Rotary encoder with pushbutton,TBD,,Verify footprint
 SW2,Rotary encoder with pushbutton,TBD,,Verify footprint
