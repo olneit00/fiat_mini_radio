@@ -1,0 +1,12 @@
+Qty,Part,Value,Footprint,Supplier,Preis,Link,Status
+1,U1,ESP32-S3-WROOM-1-N16R8,Module:Espressif_ESP32:ESP32-S3-WROOM-1,TBD,TBD,,Proposed
+1,U2,ST7789 240x240 display module,TBD,TBD,TBD,,Verify
+1,U3,PCM5100 DAC module,TBD,TBD,TBD,,Verify
+1,U4,Audio amplifier module,TBD,TBD,TBD,,Verify
+1,SW1,Rotary encoder with pushbutton,TBD,TBD,TBD,,Verify
+1,SW2,Rotary encoder with pushbutton,TBD,TBD,TBD,,Verify
+1,U5,3.3V regulator,TBD,TBD,TBD,,Proposed
+1,J1,USB connector,TBD,TBD,TBD,,Proposed
+1,C1,100nF,Capacitor_SMD:C_0603_1608Metric,TBD,TBD,,Proposed
+1,C2,100nF,Capacitor_SMD:C_0603_1608Metric,TBD,TBD,,Proposed
+1,C3,10uF,Capacitor_SMD:C_0805_2012Metric,TBD,TBD,,Proposed
