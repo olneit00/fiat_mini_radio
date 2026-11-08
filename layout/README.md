@@ -3,7 +3,7 @@
 **Ziel:** So einfach wie möglich. Die Platine enthält **keine aktiven Komponenten** und keine eigenen Widerstände, Spannungsregler, USB-Buchsen oder Taster. **Noch nicht fertigungsreif.**
 
 ## Bestückung
-1. Zwei Buchsenleisten als Sockel für das **vorhandene ESP32-S3-DevKitC-1 N16R8** (USB-C sitzt bereits auf dem DevKit).
+1. Zwei **22-polige Buchsenleisten (2 × 22 Kontakte)** als Sockel für das **vorhandene ESP32-S3-DevKitC-1 N16R8** (USB-C sitzt bereits auf dem DevKit).
 2. Eine **6-polige Buchsenleiste** für das vorhandene **PCM5100-DAC-Modul** (Pinfolge VIN, GND, LCK, DIN, BCK, SCK).
 3. **Durchkontaktierte, beschriftete Lötaugen** für Encoder 1 (A, B, SW, GND).
 4. **Durchkontaktierte, beschriftete Lötaugen** für Encoder 2 (A, B, SW, GND).
@@ -38,7 +38,7 @@ Keine Verstärkerschaltung. Audioausgänge bleiben zunächst am vorhandenen DAC-
 - [kicad_pin_assignment.csv](kicad_pin_assignment.csv) – ältere KiCad-Vorbereitung
 
 ## Vor dem Layout zwingend abgleichen
-- Exakte Stiftleistenanzahl, Pitch, Reihenabstand und Orientierung des vorhandenen ESP32-S3-DevKits.
+- Stiftleistenanzahl **22 je Seite (vom Nutzer bestätigt)**. Pitch voraussichtlich 2,54 mm; Reihenabstand und Orientierung des vorhandenen ESP32-S3-DevKits noch prüfen.
 - Stiftabstand, Maße und Einsteckrichtung des PCM5100-Moduls.
 - Stromversorgung und BLK-Beschaltung des Displaymoduls.
 - Die **tatsächlichen** SPI-SCLK/MOSI-Pins der laufenden Firmware.
