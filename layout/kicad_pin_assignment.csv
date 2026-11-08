@@ -1,0 +1,12 @@
+Reference,Value,Footprint,Datasheet,Status
+U1,ESP32-S3-WROOM-1-N16R8,Module:Espressif_ESP32:ESP32-S3-WROOM-1,,Proposed
+U2,ST7789 240x240 display module,TBD,,Confirmed firmware controller
+U3,PCM5100 DAC module,TBD,,Prior prototype; verify actual module
+U4,Audio amplifier module,TBD,,Verify model
+SW1,Rotary encoder with pushbutton,TBD,,Verify footprint
+SW2,Rotary encoder with pushbutton,TBD,,Verify footprint
+U5,3.3V regulator,TBD,,Proposed; choose after current budget
+J1,USB connector,TBD,,Proposed; not confirmed
+C1,100nF,Capacitor_SMD:C_0603_1608Metric,,Proposed local decoupling
+C2,100nF,Capacitor_SMD:C_0603_1608Metric,,Proposed local decoupling
+C3,10uF,Capacitor_SMD:C_0805_2012Metric,,Proposed bulk; voltage rating TBD
