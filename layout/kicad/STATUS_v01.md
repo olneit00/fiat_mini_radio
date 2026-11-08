@@ -26,3 +26,8 @@
 - Display: CS=GPIO17, DC=GPIO16, RST=GPIO15, GND=GND; SCL/SDA/VCC/BLK vorläufig offen.
 - DAC-Buchsenleiste ist entlang der kurzen DAC-Seite orientiert (6 Kontakte quer zur Modullängsachse).
 - **Nicht routen oder fertigen, bevor die ESP32-Pinbeschriftungen mit dem physischen HW-678 und SPI2/HSPI mit der Firmware abgeglichen sind.**
+
+## Massefläche – Zwischenstand
+- Eine **GND-Kupferzone auf B.Cu** wurde angelegt (0,5 mm Abstand zum Platinenrand, 0,3 mm Clearance). Die Zone ist in der PCB-Datei definiert, aber **noch nicht gefüllt** (kein KiCad-DRC/Zone-Fill ausgeführt).
+- Signal-Leiterbahnen sind weiterhin **nicht geroutet**. Die Platine darf nicht gefertigt werden.
+- Die Anschlüsse aus der anderen Agentenprüfung (GPIO18 SPI-SCLK, GPIO14 SPI-MOSI; 3V3 für Display/DAC/BLK) sind als Netze zugewiesen, aber die reale HW-678-Pinbelegung und mechanische Passung müssen unabhängig geprüft werden.
