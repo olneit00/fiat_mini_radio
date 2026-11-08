@@ -44,3 +44,9 @@
 - **GPIO40 und GPIO41 sind weiterhin unverbunden.** Die automatische Wegsuche fand bei der derzeitigen Reihenfolge und Belegung keine kollisionsfreie Route auf F.Cu.
 - GND-Kupferzone ist nicht gefüllt; vollständige DRC und reale Modul-Passprobe fehlen weiterhin. Außerdem sind die 0,25-mm-Leitungen noch nicht auf Abstände, Kurzschlüsse oder Fertigbarkeit geprüft.
 - Kein Produktionsstatus, keine Gerberfreigabe.
+
+## 70 × 65 mm, M3-Befestigung und restliches Routing (08.11.2026)
+- Außenkontur **70 × 65 mm**, B.Cu-Massezone entsprechend erweitert.
+- Vier **nicht metallisierte 3,2-mm-Bohrungen** bei (4,4), (66,4), (4,61), (66,61) mm ergänzt (Commit 50dacfd). Mechanische Bauteilfreiräume und Kupferabstände müssen noch per DRC bestätigt werden.
+- **GPIO40 und GPIO41** algorithmisch über F.Cu/B.Cu ergänzt (Commit eb799d9): 459 weitere 0,25-mm-Segmente und **1 Via (0,8/0,4 mm)**. GPIO40 ohne Via; GPIO41 mit einem Via. Alle ursprünglich offenen GPIO-Verbindungen haben damit einen Entwurfs-Routingpfad.
+- **WICHTIG:** Dies ist kein bestandener KiCad-DRC. Die automatischen Routen sind noch nicht auf tatsächliche Kupferkurzschlüsse, Abstände, Leiterbahn-Pad-Anschlüsse oder unverbundene Netze geprüft; Massezone nicht gefüllt. Keine Fertigungsfreigabe.
