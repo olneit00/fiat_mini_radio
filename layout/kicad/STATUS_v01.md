@@ -2,7 +2,7 @@
 
 [PCB-Platzierungsentwurf](fiat_mini_radio_carrier_v01.kicad_pcb) (65 × 65 mm) enthält 2 × 22 ESP32-Sockelkontakte, 1 × 6 PCM5102A-Sockelkontakte sowie **16 beschriftete Lötaugen** (Encoder 1: 4; Encoder 2: 4; ST7789: 8).
 
-**ACHTUNG: NICHT FERTIGEN.** Die PCB-Datei ist eine **unverdrahtete Platzierungsskizze**. Die Pads sind noch keinem Netz zugewiesen. Die Pin-Nummerierung des ESP32-Footprints ist nur eine Platzhalterzählung, **keine** bestätigte Zuordnung zu GPIO-Labels. Eine DRC-/ERC-Prüfung wurde nicht durchgeführt.
+**ACHTUNG: NICHT FERTIGEN.** Die PCB-Datei ist eine **unverdrahtete Platzierungsskizze**. GPIO-Netze sind seit Commit 6ca56ff den bekannten ESP32-, DAC-, Encoder- und Display-Steuerpads zugewiesen. **Es sind noch keine Leiterbahnen geroutet.** Offene Stromversorgungs- und SPI-Signale bleiben absichtlich ohne Netz. Die Pin-Nummerierung des ESP32-Footprints ist nur eine Platzhalterzählung, **keine** bestätigte Zuordnung zu GPIO-Labels. Eine DRC-/ERC-Prüfung wurde nicht durchgeführt.
 
 ## Bekannte Prüfungen / Risiken
 1. HW-678 V0.0.0: 22 Pins pro Reihe, gemessener Reihenabstand 24,5 mm, Pinpitch 2,54 mm vorläufig. **1:1-Passprobe zwingend**.
@@ -18,3 +18,11 @@
 - Modul- und Lötaugenkollisionen beseitigen.
 - KiCad-Netze zuweisen, routen, 1:1-Ansicht und DRC prüfen.
 - Erst danach Fertigungsdaten erzeugen.
+
+## Elektrischer Zwischenstand (08.11.2026)
+- DAC: LCK=GPIO6, DIN=GPIO5, BCK=GPIO4, SCK=GND; VIN vorläufig offen.
+- Encoder links: A=GPIO47, B=GPIO21, SW=GPIO7, GND=GND.
+- Encoder rechts: A=GPIO39, B=GPIO40, SW=GPIO41, GND=GND.
+- Display: CS=GPIO17, DC=GPIO16, RST=GPIO15, GND=GND; SCL/SDA/VCC/BLK vorläufig offen.
+- DAC-Buchsenleiste ist entlang der kurzen DAC-Seite orientiert (6 Kontakte quer zur Modullängsachse).
+- **Nicht routen oder fertigen, bevor die ESP32-Pinbeschriftungen mit dem physischen HW-678 und SPI2/HSPI mit der Firmware abgeglichen sind.**
