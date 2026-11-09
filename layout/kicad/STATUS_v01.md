@@ -57,3 +57,12 @@
 - Abstandstest der vorhandenen Leiterbahnen zu den vier M3-Bohrungen: keine Verletzung des groben Grenzwerts 2,025 mm vom Bohrmittelpunkt gefunden; Kupferzonenfüllung und Bauteil-Courtyards weiterhin nicht geprüft.
 - **KRITISCHER BEFUND:** Eine statische geometrische Kontrolle meldet auf F.Cu einen Abstand von nur **0,25 mm** zwischen einer GPIO21-Leiterbahn (Netz 18, Segment x=36,75 mm) und GPIO40 (Netz 26, bei y=23,5 mm). Bei 0,25-mm-Leiterbahnen bleibt nur 0,00 mm Kupferabstand zwischen diesen Segmenten. Der Entwurf ist **nicht fertigungsreif**. Vor Gerberexport muss die Route korrigiert und mit KiCad DRC verifiziert werden.
 - Keine DRC- oder ERC-Prüfung mit KiCad möglich in der aktuellen Laufzeitumgebung. Eine formale Prüfung darf nicht als bestanden dargestellt werden.
+
+
+## V02: Encoder J5 näher am ESP32 und neu geroutet (09.11.2026)
+- Separate Datei: `fiat_mini_radio_carrier_v02_encoder_near_esp_DRAFT.kicad_pcb` (V01 bleibt unverändert).
+- J5 bei (40,22) mm; Lötaugenreihenfolge **SW / B / A / GND** statt A / B / SW / GND, weil die GPIO-Reihenfolge am ESP32 umgekehrt ist.
+- J5 Pad 1 SW = GPIO41 (40,22); Pad 2 B = GPIO40 (40,25.5); Pad 3 A = GPIO39 (40,29); Pad 4 GND = GND (40,32.5).
+- Drei kurze B.Cu-Segmente: GPIO41 (35.25,20.74)→(40,22); GPIO40 (35.25,23.28)→(40,25.5); GPIO39 (35.25,25.82)→(40,29).
+- Alte langen Routingsegmente der Netze 24/26/27 und das alte Via GPIO41 aus V02 entfernt. Der zuvor dokumentierte F.Cu-Kurzschluss GPIO21/GPIO40 entfällt dadurch in V02.
+- Ein Segment-Abstandscheck auf B.Cu gegen vorhandene **Leiterbahnsegmente** zeigte keine Kollisionen in diesem Bereich; **keine vollständige Pad-/Via-/Zonen-DRC**. Netzanschluss der übrigen Bauteile und GND-Zone nicht bestätigt. **Keine Gerberfreigabe**.
