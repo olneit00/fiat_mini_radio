@@ -74,3 +74,8 @@
 - GPIO39: J2 Pad 9 (35,25 / 25,82) → J5 Pad 3 (40 / 29), B.Cu.
 - Gegen die anderen vorhandenen B.Cu-Leiterbahnsegmente wurden keine unmittelbaren geometrischen Kollisionen der drei neuen Verbindungen gefunden. Die drei neuen Segmente sind auch untereinander getrennt.
 - **Achtung:** Die GND-Zone ist zwar im Dateitext definiert, aber noch nicht mit Kupfer gefüllt; insbesondere J5 Pad 4 (40 / 32,5) hat damit noch keine nachgewiesene Masseverbindung. Die Prüfung umfasst **nicht** Pads, Footprint-Courtyards, Via-Abstände, die vollständige Connectivity oder einen offiziellen KiCad-DRC. Keine Gerber-/Fertigungsfreigabe.
+
+## V02: Lötpad-Abstände am versetzten J5 (09.11.2026)
+- Die vier J5-Lötaugen liegen bei (40,22), (40,25.5), (40,29), (40,32.5) mm.
+- Statische Geometrieprüfung gegen 70 aus dem PCB-Text ausgelesene Through-Hole-/Montagepads: **kein fremdes Pad mit weniger als 0,30 mm Kupferabstand zu einem J5-Pad** gefunden. Für die drei neuen B.Cu-Segmente GPIO39/40/41: **kein fremdes elektrisches Through-Hole-Pad mit weniger als 0,20 mm rechnerischem Kupferabstand** gefunden. Nicht geprüft: Footprint-Courtyards, Pad-Formen abweichend vom angenommenen Kreis, Massezonenfüllung, vollständiger DRC.
+- Das lokale Routing ist geometrisch plausibel, aber **nicht offiziell DRC-validiert**. GND-Zone ist nicht gefüllt. Keine Gerberfreigabe.
