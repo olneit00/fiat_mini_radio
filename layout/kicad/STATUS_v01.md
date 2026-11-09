@@ -66,3 +66,11 @@
 - Drei kurze B.Cu-Segmente: GPIO41 (35.25,20.74)→(40,22); GPIO40 (35.25,23.28)→(40,25.5); GPIO39 (35.25,25.82)→(40,29).
 - Alte langen Routingsegmente der Netze 24/26/27 und das alte Via GPIO41 aus V02 entfernt. Der zuvor dokumentierte F.Cu-Kurzschluss GPIO21/GPIO40 entfällt dadurch in V02.
 - Ein Segment-Abstandscheck auf B.Cu gegen vorhandene **Leiterbahnsegmente** zeigte keine Kollisionen in diesem Bereich; **keine vollständige Pad-/Via-/Zonen-DRC**. Netzanschluss der übrigen Bauteile und GND-Zone nicht bestätigt. **Keine Gerberfreigabe**.
+
+## V02: zusätzliche Prüfung der neuen Encoder-Verbindungen (09.11.2026)
+- Die V02-Datei enthält nach dem Umrouten 725 Leiterbahnsegmente (einschließlich der drei neuen B.Cu-Segmente).
+- GPIO41: J2 Pad 7 (35,25 / 20,74) → J5 Pad 1 (40 / 22), B.Cu.
+- GPIO40: J2 Pad 8 (35,25 / 23,28) → J5 Pad 2 (40 / 25,5), B.Cu.
+- GPIO39: J2 Pad 9 (35,25 / 25,82) → J5 Pad 3 (40 / 29), B.Cu.
+- Gegen die anderen vorhandenen B.Cu-Leiterbahnsegmente wurden keine unmittelbaren geometrischen Kollisionen der drei neuen Verbindungen gefunden. Die drei neuen Segmente sind auch untereinander getrennt.
+- **Achtung:** Die GND-Zone ist zwar im Dateitext definiert, aber noch nicht mit Kupfer gefüllt; insbesondere J5 Pad 4 (40 / 32,5) hat damit noch keine nachgewiesene Masseverbindung. Die Prüfung umfasst **nicht** Pads, Footprint-Courtyards, Via-Abstände, die vollständige Connectivity oder einen offiziellen KiCad-DRC. Keine Gerber-/Fertigungsfreigabe.
