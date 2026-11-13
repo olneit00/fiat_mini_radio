@@ -1,0 +1,50 @@
+name: KiCad zone fill and DRC (draft)
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'layout/kicad/fiat_mini_radio_carrier_v02_encoder_near_esp_DRAFT.kicad_pcb'
+      - 'layout/kicad/fill_zones.py'
+      - '.github/workflows/kicad-zone-drc.yml'
+
+jobs:
+  verify-pcb:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install KiCad and pcbnew
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y kicad python3-pcbnew
+      - name: Fill GND zone using KiCad
+        run: |
+          mkdir -p build/kicad
+          /usr/bin/python3 layout/kicad/fill_zones.py \
+            layout/kicad/fiat_mini_radio_carrier_v02_encoder_near_esp_DRAFT.kicad_pcb \
+            build/kicad/fiat_mini_radio_carrier_v02_filled_DRAFT.kicad_pcb
+      - name: Run KiCad DRC
+        id: drc
+        continue-on-error: true
+        run: |
+          kicad-cli pcb drc \
+            --output build/kicad/drc_report.txt \
+            build/kicad/fiat_mini_radio_carrier_v02_filled_DRAFT.kicad_pcb
+      - name: Show DRC summary
+        if: always()
+        run: |
+          if test -f build/kicad/drc_report.txt; then
+            head -n 100 build/kicad/drc_report.txt
+          else
+            echo 'No DRC report produced'
+          fi
+      - name: Upload filled PCB and DRC report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: piper32-v02-filled-pcb-and-drc
+          path: build/kicad/
+          if-no-files-found: warn
+      - name: Fail if DRC failed
+        if: steps.drc.outcome == 'failure'
+        run: exit 1
