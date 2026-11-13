@@ -30,6 +30,11 @@ jobs:
           assert '(version 20240108)' in content
           content = content.replace('(version 20240108)', '(version 20221018)', 1)
           content = content.replace('(uuid "', '(tstamp "')
+          import re
+          # KiCad 7 footprint parser expects fp_text, not KiCad 8 property nodes.
+          content = re.sub(r'\(property "(Reference|Value)" "([^"]*)" (\(at [^\n]+)',
+                           lambda m: '(fp_text ' + m.group(1).lower() + ' "' + m.group(2) + '" ' + m.group(3),
+                           content)
           dst.write_text(content)
           print('Adapted', dst)
           PY
