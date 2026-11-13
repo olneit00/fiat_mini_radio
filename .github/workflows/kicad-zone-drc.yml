@@ -37,7 +37,7 @@ jobs:
         run: |
           mkdir -p build/kicad
           /usr/bin/python3 layout/kicad/fill_zones.py \
-            layout/kicad/fiat_mini_radio_carrier_v02_encoder_near_esp_DRAFT.kicad_pcb \
+            build/kicad/fiat_mini_radio_carrier_v02_kicad7_compat_DRAFT.kicad_pcb \
             build/kicad/fiat_mini_radio_carrier_v02_filled_DRAFT.kicad_pcb
       - name: Run KiCad DRC
         id: drc
