@@ -16,33 +16,17 @@ jobs:
       - name: Install KiCad and pcbnew
         run: |
           sudo apt-get update
+          sudo apt-get install -y software-properties-common
+          sudo add-apt-repository -y ppa:kicad/kicad-9.0
+          sudo apt-get update
           sudo apt-get install -y kicad
           kicad-cli version
           /usr/bin/python3 -c 'import pcbnew; print("pcbnew loaded:", pcbnew.Version())'
-      - name: Adapt KiCad 8 draft file for KiCad 7 parser
-        run: |
-          mkdir -p build/kicad
-          python3 - <<'PY'
-          from pathlib import Path
-          src = Path('layout/kicad/fiat_mini_radio_carrier_v02_encoder_near_esp_DRAFT.kicad_pcb')
-          dst = Path('build/kicad/fiat_mini_radio_carrier_v02_kicad7_compat_DRAFT.kicad_pcb')
-          content = src.read_text()
-          assert '(version 20240108)' in content
-          content = content.replace('(version 20240108)', '(version 20221018)', 1)
-          content = content.replace('(uuid "', '(tstamp "')
-          import re
-          # KiCad 7 footprint parser expects fp_text, not KiCad 8 property nodes.
-          content = re.sub(r'\(property "(Reference|Value)" "([^"]*)" (\(at [^\n]+)',
-                           lambda m: '(fp_text ' + m.group(1).lower() + ' "' + m.group(2) + '" ' + m.group(3),
-                           content)
-          dst.write_text(content)
-          print('Adapted', dst)
-          PY
       - name: Fill GND zone using KiCad
         run: |
           mkdir -p build/kicad
           /usr/bin/python3 layout/kicad/fill_zones.py \
-            build/kicad/fiat_mini_radio_carrier_v02_kicad7_compat_DRAFT.kicad_pcb \
+            layout/kicad/fiat_mini_radio_carrier_v02_encoder_near_esp_DRAFT.kicad_pcb \
             build/kicad/fiat_mini_radio_carrier_v02_filled_DRAFT.kicad_pcb
       - name: Run KiCad DRC
         id: drc
