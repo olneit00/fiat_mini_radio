@@ -19,6 +19,20 @@ jobs:
           sudo apt-get install -y kicad
           kicad-cli version
           /usr/bin/python3 -c 'import pcbnew; print("pcbnew loaded:", pcbnew.Version())'
+      - name: Adapt KiCad 8 draft file for KiCad 7 parser
+        run: |
+          mkdir -p build/kicad
+          python3 - <<'PY'
+          from pathlib import Path
+          src = Path('layout/kicad/fiat_mini_radio_carrier_v02_encoder_near_esp_DRAFT.kicad_pcb')
+          dst = Path('build/kicad/fiat_mini_radio_carrier_v02_kicad7_compat_DRAFT.kicad_pcb')
+          content = src.read_text()
+          assert '(version 20240108)' in content
+          content = content.replace('(version 20240108)', '(version 20221018)', 1)
+          content = content.replace('(uuid "', '(tstamp "')
+          dst.write_text(content)
+          print('Adapted', dst)
+          PY
       - name: Fill GND zone using KiCad
         run: |
           mkdir -p build/kicad
