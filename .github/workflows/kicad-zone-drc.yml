@@ -16,7 +16,9 @@ jobs:
       - name: Install KiCad and pcbnew
         run: |
           sudo apt-get update
-          sudo apt-get install -y kicad python3-pcbnew
+          sudo apt-get install -y kicad
+          kicad-cli version
+          /usr/bin/python3 -c 'import pcbnew; print("pcbnew loaded:", pcbnew.Version())'
       - name: Fill GND zone using KiCad
         run: |
           mkdir -p build/kicad
