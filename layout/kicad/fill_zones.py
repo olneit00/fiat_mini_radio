@@ -9,7 +9,7 @@ if len(sys.argv) != 3:
 source, target = sys.argv[1:]
 board = pcbnew.LoadBoard(source)
 zones = board.Zones()
-if zones.GetCount() == 0:
+if len(zones) == 0:
     raise SystemExit("No copper zones found; refusing to write output")
 print("Zones found:", zones.GetCount())
 for zone in zones:
