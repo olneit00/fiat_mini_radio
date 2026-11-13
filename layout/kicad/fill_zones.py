@@ -11,7 +11,7 @@ board = pcbnew.LoadBoard(source)
 zones = board.Zones()
 if len(zones) == 0:
     raise SystemExit("No copper zones found; refusing to write output")
-print("Zones found:", zones.GetCount())
+print("Zones found:", len(zones))
 for zone in zones:
     print("Zone:", zone.GetNetname(), zone.GetLayerName())
 pcbnew.ZONE_FILLER(board).Fill(zones)
