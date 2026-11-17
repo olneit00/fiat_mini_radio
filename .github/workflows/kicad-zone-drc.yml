@@ -19,7 +19,14 @@ jobs:
           sudo apt-get install -y software-properties-common
           sudo add-apt-repository -y ppa:kicad/kicad-9.0
           sudo apt-get update
+          apt-cache policy kicad
           sudo apt-get install -y kicad
+          # Never silently run KiCad 7 from the Ubuntu repository.
+          KICAD_MAJOR="$(kicad-cli version | cut -d. -f1)"
+          if [ "$KICAD_MAJOR" -lt 9 ]; then
+            echo "::error::KiCad 9+ required; installed $(kicad-cli version)"
+            exit 1
+          fi
           kicad-cli version
           /usr/bin/python3 -c 'import pcbnew; print("pcbnew loaded:", pcbnew.Version())'
       - name: Fill GND zone using KiCad
